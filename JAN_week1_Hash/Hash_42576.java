@@ -1,23 +1,31 @@
 import java.util.*;
 
 public class Hash_42576 {
-    public int solution(int[] nums) {
-        int answer = nums.length / 2;
+    public String solution(String[] participant, String[] completion) {
+        Map<String, Integer> map = new HashMap<>();
 
-        HashSet<Integer> set = new HashSet<>();
+        for (String p : participant) {
+            map.put(p, map.getOrDefault(p, 0) + 1);
+        }
 
-        Arrays.stream(nums).forEach(set::add);
+        for (String c : completion) {
+            map.put(c, map.get(c) - 1);
+        }
 
-        int setSize = set.size();
-
-        return Math.min(setSize, answer);
+        for (String key : map.keySet()) {
+            if (map.get(key) != 0) {
+                return key;
+            }
+        }
+        return "";
     }
 
     public static void main(String[] args) {
-        Hash_42576 p = new Hash_42576();
+        Hash_42576 d = new Hash_42576();
 
-        System.out.println(p.solution(new int[]{3, 1, 2, 3}));
-        System.out.println(p.solution(new int[]{3, 3, 3, 2, 2, 4}));
-        System.out.println(p.solution(new int[]{3, 3, 3, 2, 2, 2}));
+        System.out.println(d.solution(new String[]{"leo", "kiki", "eden"}, new String[]{"eden", "kiki"}));
+        System.out.println(d.solution(new String[]{"marina", "josipa", "nikola", "vinko", "filipa"},
+                new String[]{"josipa", "filipa", "marina", "nikola"}));
+        System.out.println(d.solution(new String[]{"mislav", "stanko", "mislav", "ana"}, new String[]{"stanko", "ana", "mislav"}));
     }
 }
