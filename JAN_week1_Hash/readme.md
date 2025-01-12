@@ -56,3 +56,31 @@ for (String key : map.keySet()) {
 ### 실행 시간 및 메모리
 - 최소 : 0.06ms, 72.8MB
 - 최대 : 1.19ms, 90.4MB
+
+
+## 전화번호 목록
+
+### 소요 시간
+- 10분
+
+### 간단 풀이 방법
+- 전화번호 목록을 순차적으로 순회 하면서, 다름 번호가 현재 번호로 시작하는 지에 판단
+- 현재 번호로 시작한다면, false 반환
+- 서로의 번호가 유니크 하다면 true 반환
+
+### pseudo code
+```java
+for (int i = 0; i < size - 1; i++) {
+        if (phone_book[i + 1].startsWith(phone_book[i])) {
+            return false;
+        }
+    }
+```
+
+### 시간 복잡도
+- sort : 평균 [O(nlog(n))], 최악[O(n^2)]
+- 루프 : O(N)
+
+### 실행 시간 및 메모리
+- 최소 : 0.06ms, 70.6MB
+- 최대 : 4.26ms, 89.6MB
