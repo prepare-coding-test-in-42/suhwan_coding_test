@@ -110,3 +110,43 @@ for (String k : map.key) {
 ### 실행 시간 및 메모리
 - 최소 : 0.05ms, 70.8MB
 - 최대 : 0.13ms, 91.8MB
+
+## 베스트 앨범
+
+### 소요 시간
+- 30분
+
+### 간단 풀이 방법
+- 장르별, 플레이 합산을 구해 g map에 저장
+- 장르별, 고유 번호와 플레이 횟수를 배열로 play map에 저장
+- play map을 플레이 횟수 기준으로 오름차순으로 정렬하고, 만약 플레이 횟수가 같다면 고유번호 기준 내림차순으로 정렬
+- 장르별 합산 플레이 횟수를 List로 생성 후, 오름차순으로 정렬
+- list 순회 하면서, 장르별 최대 플레이 순으로 고유번호 생성
+
+### pseudo code
+```java
+for (String k : play.keySet()) {
+    play.get(k).sort((o1, o2) -> {
+        if (o1[1] == o2[1]) {
+            return o1[0] - o2[0];
+        }
+        return o2[1] - o1[1];
+    });
+}
+
+for (Map.Entry<String, Integer> e : gList) {
+    String key = e.getKey();
+    List<int[]> l = play.get(key);
+    list.add(l.get(0)[0]);
+    if (l.size() > 1) {
+        list.add(l.get(1)[0]);
+    }
+}
+```
+
+### 시간 복잡도
+- 평균 : O(NlogN)
+
+### 실행 시간 및 메모리
+- 최소 : 2.95ms, 73.5MB
+- 최대 : 4.82ms, 96.8MB
