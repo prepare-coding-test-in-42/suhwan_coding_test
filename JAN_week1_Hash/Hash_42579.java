@@ -35,4 +35,10 @@ public class Hash_42579 {
         }
         return list.stream().mapToInt(Integer::intValue).toArray();
     }
+
+    public static void main(String[] args) {
+        Hash_42579 p = new Hash_42579();
+        int [] answer = p.solution(new String[]{"classic", "pop", "classic", "classic", "pop"}, new int[]{500, 600, 150, 800, 2500});
+        System.out.println(Arrays.toString(answer));
+    }
 }
