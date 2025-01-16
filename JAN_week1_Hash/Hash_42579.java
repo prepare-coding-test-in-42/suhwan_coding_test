@@ -31,7 +31,6 @@ public class Hash_42579 {
             if (l.size() > 1) {
                 list.add(l.get(1)[0]);
             }
-
         }
         return list.stream().mapToInt(Integer::intValue).toArray();
     }
