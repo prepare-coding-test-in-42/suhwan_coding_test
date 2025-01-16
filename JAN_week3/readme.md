@@ -54,3 +54,36 @@ while(!q.isEmpty()) {
 - 최소 : 0.29ms, 73.9MB
 - 최대 : 0.50ms, 92.6MB
 
+
+## [올바른 괄호 12909](https://school.programmers.co.kr/learn/courses/30/lessons/12909)
+
+### 소요 시간
+- 20분
+
+### 간단 풀이 방법
+- 완전 탐색으로 풀었습니다. (도저히 스택 어케씀...?)
+- 각 string을 순회하면서, 열린 괄호 닫힌 괄호 수를 센다
+- 만약, 닫힌 괄호 횟수가 많은 경우 false
+- 순회 후 서로 갯수가 같은 때 true
+
+### pseudo code
+```java
+for (int i = 0; i < s.length(); ++i) {
+    if (s.charAt(i) == '(') {
+        openCount++;
+    } else {
+        closeCount++;
+    }
+
+    if (openCount < closeCount) {
+        return false;
+    }
+}
+```
+
+### 시간 복잡도
+- O(N)
+
+### 실행 시간 및 메모리
+- 최소 : 0.02ms, 69.4MB
+- 최대 : 0.04ms, 88MB
