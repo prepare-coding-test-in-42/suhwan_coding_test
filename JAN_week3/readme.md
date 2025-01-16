@@ -87,3 +87,34 @@ for (int i = 0; i < s.length(); ++i) {
 ### 실행 시간 및 메모리
 - 최소 : 0.02ms, 69.4MB
 - 최대 : 0.04ms, 88MB
+
+## [프로세스 42587](https://school.programmers.co.kr/learn/courses/30/lessons/42587)
+
+### 소요 시간
+- 30분
+
+### 간단 풀이 방법
+- 우선순위 큐에 process value를 넣는다. (우선순위 큐는 내림차순으로 insert)
+- 각, 프로세스 배열을 순회하면서, 우선순위 큐의 값과 같고 location도 같을 시 return
+
+### pseudo code
+```java
+while (!pq.isEmpty()) {
+    for (int i = 0; i < priorities.length; ++i) {
+        if (pq.peek() == priorities[i]) {
+            if (i == location) {
+                return answer;
+            }
+            answer++;
+            pq.poll();
+        }
+    }
+}
+```
+
+### 시간 복잡도
+- O(n^2)
+
+### 실행 시간 및 메모리
+- 최소 : 0.70ms, 69.7MB
+- 최대 : 1.28ms, 93.4MB
