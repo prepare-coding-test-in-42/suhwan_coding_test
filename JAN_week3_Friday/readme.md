@@ -116,3 +116,29 @@ if (cmd.equals("D")) {
 ### 실행 시간 및 메모리
 - 최소 : 0.94ms, 73MB
 - 최대 : 129.06ms, 124MB
+
+## [K번째수_42748](https://school.programmers.co.kr/learn/courses/30/lessons/42748)
+
+### 소요 시간
+- 10분
+
+### 간단 풀이 방법
+- command에 주어진 대로, array 복사 후 정렬
+- 해당 index 값을 list에 추가
+- return (list -> int array 변환)
+
+### pseudo code
+```java
+System.arraycopy(array, start - 1, subArray, 0, len);
+Arrays.sort(subArray);
+answer.add(subArray[index]);
+```
+
+### 시간 복잡도
+- 복사 : O(N)
+- 정렬 : O(MlogM)
+
+### 실행 시간 및 메모리
+- 최소 : 2.12ms, 70.6MB
+- 최대 : 5.96mms, 99.2MB
+
