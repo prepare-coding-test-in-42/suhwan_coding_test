@@ -163,3 +163,43 @@ Arrays.sort(numberArray, (o1, o2) -> (o2 + o1).compareTo(o1 + o2));
 ### 실행 시간 및 메모리
 - 최소 : 4.40ms, 77MB
 - 최대 : 303.63ms, 139MB
+
+## [다리를 지나는 트럭](https://school.programmers.co.kr/learn/courses/30/lessons/42583)
+
+### 소요 시간
+- 1시간
+
+### 간단 풀이 방법
+- 다리 지나는 시간을 담을 큐와, 트럭을 담을 큐 2개를 선언한다
+- 무한 루프를 돌면서, 시간 큐가 비어있다면 모든 트럭이 다리를 건넜기에 break;
+- 현재 트럭 위치를 나타내는 curr이 트럭 갯수를 넘지 않고, 다리가 현재 무게 + 트럭무게를 버틸 수 있다면, 시간은 시간큐에 트럭무게는 다리 큐에 담는다
+- 만약, 현재 시간이 시간큐에 있는 도착 시간과 같다면 다리에서 무게를 빼주고, 시간큐에서도 제거한다
+
+### pseudo code
+```java
+while(true) {
+    if (!bridgeQueue.isEmpty() && arriveTimeQueue.peek() == totalTime) {
+        arriveTimeQueue.poll();
+        sum -= bridgeQueue.poll();
+    }
+
+    if (curr < truck_weights.length && sum + truck_weights[curr] <= weight) {
+        arriveTimeQueue.add(totalTime + bridge_length);
+        bridgeQueue.add(truck_weights[curr]);
+        sum += truck_weights[curr];
+        curr++;
+    }
+
+    totalTime++;
+    if (arriveTimeQueue.isEmpty()) {
+        break;
+    }
+}
+```
+
+### 시간 복잡도
+- O(N)
+
+### 실행 시간 및 메모리
+- 최소 : 0.08ms, 71.4MB
+- 최대 : 23.22ms, 94.3MB
