@@ -27,7 +27,6 @@ public class Heap_42627 {
                 memory.add(process.poll());
             }
 
-            // 메모리 비어있다면 다음 작업이 들어올 시간 될 때까지 대기
             if (memory.isEmpty()) {
                 time = process.peek().requestTime;
             } else {
