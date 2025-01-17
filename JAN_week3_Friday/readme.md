@@ -203,3 +203,30 @@ while(true) {
 ### 실행 시간 및 메모리
 - 최소 : 0.08ms, 71.4MB
 - 최대 : 23.22ms, 94.3MB
+
+## [주식가격_42584](https://school.programmers.co.kr/learn/courses/30/lessons/42584)
+
+### 소요 시간
+- 20분 (이중 for문 돌기 싫었는데, 결국 돌아버림)
+
+### 간단 풀이 방법
+- 각, 주식 가격을 큐에 넣고, 자신 이후에 가격이 떨어지는 시간을 구해 return
+
+### pseudo code
+```java
+for (int j = i + 1; j < prices.length; ++j) {
+    if (prices[j] < curr) {
+        second = j - i;
+        break ;
+    } else {
+        second++;
+    }
+}
+```
+
+### 시간 복잡도
+- O(N^2)
+
+### 실행 시간 및 메모리
+- 최소 : 1.99ms, 70.2MB
+- 최대 : 3.16ms, 89.4MB
