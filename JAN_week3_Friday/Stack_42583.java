@@ -3,33 +3,33 @@ import java.util.Queue;
 
 public class Stack_42583 {
     public int solution(int bridge_length, int weight, int[] truck_weights) {
-        int time = 0;
+        int totalTime = 0;
         int sum = 0;
         int curr = 0;
 
-        Queue<Integer> timeQueue = new LinkedList<>();
+        Queue<Integer> arriveTimeQueue = new LinkedList<>();
         Queue<Integer> bridgeQueue = new LinkedList<>();
 
         while(true) {
-            if (!bridgeQueue.isEmpty() && timeQueue.peek() == time) {
-                timeQueue.poll();
+            if (!bridgeQueue.isEmpty() && arriveTimeQueue.peek() == totalTime) {
+                arriveTimeQueue.poll();
                 sum -= bridgeQueue.poll();
             }
 
             if (curr < truck_weights.length && sum + truck_weights[curr] <= weight) {
-                timeQueue.add(time + bridge_length);
+                arriveTimeQueue.add(totalTime + bridge_length);
                 bridgeQueue.add(truck_weights[curr]);
                 sum += truck_weights[curr];
                 curr++;
             }
 
-            time++;
-            if (timeQueue.isEmpty()) {
+            totalTime++;
+            if (arriveTimeQueue.isEmpty()) {
                 break;
             }
         }
 
-        return time;
+        return totalTime;
     }
 
     public static void main(String[] args) {
