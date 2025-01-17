@@ -142,3 +142,24 @@ answer.add(subArray[index]);
 - 최소 : 2.12ms, 70.6MB
 - 최대 : 5.96mms, 99.2MB
 
+## [가장 큰 수_42746](https://school.programmers.co.kr/learn/courses/30/lessons/42746)
+
+### 소요 시간
+- 5분
+
+### 간단 풀이 방법
+- 주어진 int[]를 string[]로 변환
+- string[]을 "현재 + 다음" string으로 더한 후, 큰 값으로 정렬
+- 하나의 string으로 return
+
+### pseudo code
+```java
+Arrays.sort(numberArray, (o1, o2) -> (o2 + o1).compareTo(o1 + o2));
+```
+
+### 시간 복잡도
+- O(N)
+
+### 실행 시간 및 메모리
+- 최소 : 4.40ms, 77MB
+- 최대 : 303.63ms, 139MB
