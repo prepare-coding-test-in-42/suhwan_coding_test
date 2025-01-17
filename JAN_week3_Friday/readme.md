@@ -38,4 +38,38 @@ while(!pq.isEmpty()) {
 - 0.70ms, 69MB
 - 5.66ms, 97.5MB
 
-## 
+## [디스크 컨트롤러_42627](https://school.programmers.co.kr/learn/courses/30/lessons/42627)
+
+### 소요 시간
+- 45분
+
+### 간단 풀이 방법
+- 요청된 작업들을 요청 시간 오름차순으로 큐에 저장한다.
+- 메모리에서 처리될 큐를 선언하고, 소요 시간 순서 대로 저장한다.
+- 각 2개의 큐가 empty할 때까지, 순회를 지속한다
+- 현재 시간보다 요청 시간이 적은 process를 메모리에 올리고, 메모리에서 작업을 하면서 시간 계산을 실행
+- total 시간 / 작업 사이즈로 return
+
+### pseudo code
+```java
+while (!process.isEmpty() || !memory.isEmpty()) {
+    while (!process.isEmpty() && process.peek().requestTime <= time) {
+        memory.add(process.poll());
+    }
+
+    if (memory.isEmpty()) {
+        time = process.peek().requestTime;
+    } else {
+        Process p = memory.poll();
+        time += p.takeTime;
+        answer += (time - p.requestTime);
+    }
+}
+```
+
+### 시간 복잡도
+- O(NlongN)
+
+### 실행 시간 및 메모리
+- 최소 : 1.09ms, 70.5MB
+- 최대 : 3.89ms, 89.8MB
