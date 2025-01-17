@@ -1,4 +1,3 @@
-
 import java.util.PriorityQueue;
 
 public class Heap_42627 {
@@ -14,6 +13,8 @@ public class Heap_42627 {
     public int solution(int[][] jobs) {
         int answer = 0;
         int time = 0;
+        int jobsSize = jobs.length;
+
         PriorityQueue<Process> process = new PriorityQueue<>((o1, o2) -> o1.requestTime - o2.requestTime);
         PriorityQueue<Process> memory = new PriorityQueue<>((o1, o2) -> o1.takeTime - o2.takeTime);
 
@@ -37,7 +38,7 @@ public class Heap_42627 {
 
         }
 
-        return (answer / jobs.length);
+        return (answer / jobsSize);
     }
 
 
