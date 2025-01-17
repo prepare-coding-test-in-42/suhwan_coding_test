@@ -73,3 +73,46 @@ while (!process.isEmpty() || !memory.isEmpty()) {
 ### 실행 시간 및 메모리
 - 최소 : 1.09ms, 70.5MB
 - 최대 : 3.89ms, 89.8MB
+
+## [이중우선순위큐_42628](https://school.programmers.co.kr/learn/courses/30/lessons/42628)
+
+### 소요 시간
+- 20분
+
+### 간단 풀이 방법
+- 우선순위 큐를 오름차순, 내림차순으로 저장하는 2개의 큐 선언
+- operation을 순회하면서, 각 Command를 실행한다
+    - "I" : 두 우선순위 큐에 add
+    - "D -1" : 오름 차순 우선순위에서 poll
+    - "D 1" : 내림 차순 우선순위에서 poll
+- 두 큐가 비어있다면, [0, 0] return
+- 그렇지 않다면, 각 큐에서 poll 후 return
+
+### pseudo code
+```java
+if (cmd.equals("I")) {
+    smallQueue.add(num);
+    largeQueue.add(num);
+}
+if (cmd.equals("D")) {
+    if (smallQueue.isEmpty() || largeQueue.isEmpty()) {
+        continue;
+    }
+    if (num == -1) {
+        int smallValue = smallQueue.poll();
+        largeQueue.remove(smallValue);
+    } else {
+        int largeValue = largeQueue.poll();
+        smallQueue.remove(largeValue);
+    }
+}
+```
+
+### 시간 복잡도
+- 삽입 연산 : O(NlongN)
+- 삭제 연산 : O(N^2)
+- 최악 : O(N^2)
+
+### 실행 시간 및 메모리
+- 최소 : 0.94ms, 73MB
+- 최대 : 129.06ms, 124MB
