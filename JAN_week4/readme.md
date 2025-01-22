@@ -22,3 +22,38 @@ if (row < col) {
 ### 실행시간 및 메모리
 - 최소 : 0.05ms, 69.9MB
 - 최대 : 5.48ms, 100MB
+
+## [모의고사_42840](https://school.programmers.co.kr/learn/courses/30/lessons/42840)
+
+### 소요시간
+- 15분
+
+### 간단 풀이 방법
+- 수포자의 정답 배열을 만든 후, answer과 순회하면서 맞힌 개수를 count
+- 맞힌 갯수 기준 내림차순으로 정렬 후, 가장 많이 맞춘 max 갯수와 같으면 answer list에 저장
+
+### psuedo codecode
+```java
+for (int i = 0; i < 3; ++i) {
+    int len = gaveUpMath[i].length;
+    int count = 0;
+    for (int j = 0; j < answerLen; ++j) {
+        if (answer[j] == gaveUpMath[i][j % len]) {
+            count++;
+        }
+    }
+    if (count == 0) {
+        continue;
+    }
+    max = Math.max(max, count);
+    result.add(new PersonInfo(i + 1, count));
+}
+```
+
+### 시간 복잡도
+- O(n)
+
+## 실행 시간 및 메모리
+- 최소 : 3.72ms, 81MB
+- 최대 : 12.74ms, 103MB
+
