@@ -26,3 +26,34 @@ if (row >= i) {
 ### 실행시간 및 메모리
 - 최소 : 1.84ms, 70.2MB
 - 최대 : 2.88ms, 88.9MB
+
+## [던전_87946](https://school.programmers.co.kr/learn/courses/30/lessons/87946)
+
+### 소요 시간
+- 40분 (dfs 까먹었어우)
+
+### 간단 풀이 방법
+- dfs를 돌면서, 던전 배열을 들어가는 모든 조합을 완전 탐색하여 피로도를 구한다
+
+### pseudo code
+```java
+private void dfs(int depth, int fatigue, int[][] dungeon) {
+    for (int i = 0; i < dungeon.length; ++i) {
+        if (visited[i] || dungeon[i][0] > fatigue) {
+            continue;
+        }
+        visited[i] = true;
+        dfs(depth + 1, fatigue - dungeon[i][1], dungeon);
+        visited[i] = false;
+    }
+    answer = Math.max(answer, depth);
+}
+```
+
+### 시간 복잡도
+- O(N!)
+
+### 실행 시간 및 메모리
+- 최소 : 0.04ms, 70.6MB
+- 최대 : 3.27ms, 87.6MB
+
