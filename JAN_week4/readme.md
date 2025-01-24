@@ -57,3 +57,33 @@ private void dfs(int depth, int fatigue, int[][] dungeon) {
 - 최소 : 0.04ms, 70.6MB
 - 최대 : 3.27ms, 87.6MB
 
+## [모음사전_84512](https://school.programmers.co.kr/learn/courses/30/lessons/84512)
+
+### 소요시간
+- 15분
+
+### 간단 풀이 방법
+- {a, e, i, o, u} 배열을 만들고, 재귀를 통해 각 요소로 만들수 있는 중복 허용한 단어(길이 5이하)를 모두 구한다
+- list안에서 주어진 word의 인덱스를 찾으면 정답
+
+### pseudo code
+```java
+private void dfs(int depth, String str) {
+    list.add(str);
+    if (depth == MAX_LENGTH) {
+        return;
+    }
+
+    for (int i = 0; i < VOWEL.length; ++i) {
+        dfs(depth + 1, str + VOWEL[i]);
+    }
+}
+```
+
+### 시간 복잡도
+- O(5^5) (문자 길이가 5)
+
+### 실행 시간 및 메모리
+- 최소 : 2.74ms, 71.8MB
+- 최대 : 5.29ms, 99.9MB
+
