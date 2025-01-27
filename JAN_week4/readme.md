@@ -87,3 +87,42 @@ private void dfs(int depth, String str) {
 - 최소 : 2.74ms, 71.8MB
 - 최대 : 5.29ms, 99.9MB
 
+## [전력망_둘로_나누기_86971](https://school.programmers.co.kr/learn/courses/30/lessons/86971)
+
+### 소요시간
+- 하루
+
+### 간단 풀이 방법 (간단 맞음?)
+- 송전탑은 양방향으로 연결되어있기 때문에, 그래프라고 생각하여 노드를 생성해서 이어준다 (이어져 있다면 1, 그렇지 않으면 0)
+- 각 왼쪽 송전탑을 기준으로 순회하면서, 연결되어있는 오른쪽 송전탑을 끊고, bfs를 순회하면서 자신과 연결되어있는 송전탑을 갯수를 구한다
+- 가장 적은 연결 갯수를 구해, return
+
+### pseudo code
+```java
+private int bfs(int left, int n) {
+    int cnt = 1;
+    boolean[] visited = new boolean[n + 1];
+    Queue<Integer> q = new LinkedList<>();
+
+    q.add(left);
+
+    while(!q.isEmpty()) {
+        int curr = q.poll();
+        visited[curr] = true;
+        for (int i = 1; i < n + 1; ++i) {
+            if (wireArray[curr][i] == 1 && !visited[i]) {
+                q.add(i);
+                cnt++;
+            }
+        }
+    }
+    return Math.abs(cnt - (n - cnt));
+}
+```
+
+### 시간 복잡도
+- O(N^2)
+
+### 실행 시간 및 메모리
+- 최소 : 0.12ms, 73.5MB
+- 최대 : 13.15ms, 95.4MB
