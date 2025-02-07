@@ -141,3 +141,66 @@ FUNCTION bfs(p):
 - 최소 : 0.34ms, 72.5MB
 - 최대 : 8.93ms, 90.6MB
 
+## [단어 변환](https://school.programmers.co.kr/learn/courses/30/lessons/43163)
+
+### 소요시간
+- 15분
+
+### 간단 풀이 방법
+- dfs로 모든 경우의 수를 구하고, 만약 비교할 단어와 현재 단어의 차이나는 글자수가 1일 때만, 조합을 구함
+
+### pseudo code
+```
+FUNCTION solution(begin, target, words):
+    INITIALIZE answer = 0
+    SET t = target
+    SET w = words
+    SET len = length of words
+    INITIALIZE visited as a boolean array of size len
+
+    SET flag = false
+    FOR i = 0 to len - 1:
+        IF words[i] is equal to target:
+            SET flag = true
+            BREAK
+
+    IF flag is false:
+        RETURN answer
+
+    CALL dfs(0, begin)
+
+    RETURN answer
+
+FUNCTION dfs(depth, begin):
+    IF begin is equal to target:
+        SET answer = depth
+        RETURN
+
+    IF depth is equal to len:
+        RETURN
+
+    FOR i = 0 to len - 1:
+        IF visited[i] is false:
+            IF getDiff(begin, words[i]) is true:
+                SET visited[i] = true
+                CALL dfs(depth + 1, words[i])
+                SET visited[i] = false
+
+FUNCTION getDiff(s1, s2):
+    INITIALIZE diff = 0
+    FOR i = 0 to length of s1 - 1:
+        IF s1[i] is not equal to s2[i]:
+            INCREMENT diff
+
+        IF diff is greater than 1:
+            RETURN false
+
+    RETURN diff is equal to 1
+```
+
+### 시간 복잡도
+- O(N)
+
+### 실행 시간 및 메모리
+- 최소 : 0.02ms, 75.5MB
+- 최대 : 0.14ms, 89.3MB
