@@ -89,3 +89,55 @@ Function bfs(node):
 ### 실행 시간 및 메모리
 - 최소 : 0.10ms, 77.4MB
 - 최대 : 0.77ms, 89.1MB
+
+## [맵 최단 거리](https://school.programmers.co.kr/learn/courses/30/lessons/1844)
+
+### 소요 시간
+- 5분
+
+### 간단 풀이 방법
+- bfs를 활용해, 가장 최단 거리를 구한다
+
+### pseudo code
+```
+FUNCTION solution(maps):
+    INITIALIZE answer = -1
+    SET n = number of rows in maps
+    SET m = number of columns in maps
+
+    SET map = maps
+    INITIALIZE visited as a 2D boolean array of size (n, m)
+
+    CALL bfs with starting position (0, 0) and distance 1
+
+    RETURN answer
+
+FUNCTION bfs(p):
+    INITIALIZE queue q
+    ADD p to q
+    MARK p as visited
+
+    WHILE q is not empty:
+        POP curr from q
+
+        FOR each direction (up, down, left, right):
+            COMPUTE ny, nx as next position
+
+            IF ny, nx is out of bounds OR map[ny][nx] is 0 OR visited[ny][nx] is true:
+                CONTINUE to next iteration
+
+            IF ny, nx is the bottom-right corner (n-1, m-1):
+                SET answer = curr.d + 1
+                RETURN
+
+            MARK ny, nx as visited
+            ADD (ny, nx, curr.d + 1) to q
+```
+
+### 시간 복잡도
+- O(N)
+
+### 실행 시간 및 메모리
+- 최소 : 0.34ms, 72.5MB
+- 최대 : 8.93ms, 90.6MB
+
