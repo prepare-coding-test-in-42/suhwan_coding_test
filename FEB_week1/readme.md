@@ -252,3 +252,52 @@ FUNCTION bfs(character, item):
 ### 실행 시간 및 메모리
 - 최소 : 0.30ms 69.3MB
 - 최대 : 20.98ms, 93.1MB
+
+
+## [여행 경로](https://school.programmers.co.kr/learn/courses/30/lessons/43164)
+
+### 소요 시간
+- 30분
+
+### 간단 풀이 방법
+- ICN 부터 시작하여, 갈수 있는 경로를 dfs로 구한다
+- 많은 경우의 수가 나오지만, 그 중 알파벳 순서가 빠른 순으로 정렬 후 split하고 return
+
+### pseudo code
+```
+FUNCTION solution(tickets):
+    SET t as tickets
+    SET len as length of tickets
+    INITIALIZE visited array of size len with false
+    INITIALIZE empty list l
+    
+    CALL dfs with an empty list
+
+    SORT l based on the first element in each ticket, then by the second element
+    
+    RETURN the first ticket in the sorted list
+
+FUNCTION dfs(list):
+    IF list size is equal to len:
+        COPY list to l
+        RETURN
+    
+    FOR each ticket in tickets:
+        IF ticket is not visited:
+            IF list is empty OR last ticket in list's destination matches current ticket's start:
+                MARK ticket as visited
+                ADD ticket to list
+                CALL dfs with updated list
+                REMOVE last ticket from list
+                UNMARK ticket as visited
+
+FUNCTION isStart(ticket1, ticket2):
+    RETURN TRUE if ticket1's destination matches ticket2's start, otherwise FALSE
+```
+
+### 시간 복잡도
+- O(N!)
+
+### 실행 시간 및 메모리
+- 최소 : 10.54ms, 79.4MB
+- 최대 : 105.84ms, 112MB
