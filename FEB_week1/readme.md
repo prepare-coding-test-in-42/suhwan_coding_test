@@ -204,3 +204,51 @@ FUNCTION getDiff(s1, s2):
 ### 실행 시간 및 메모리
 - 최소 : 0.02ms, 75.5MB
 - 최대 : 0.14ms, 89.3MB
+
+## [아이템 파밍](https://school.programmers.co.kr/learn/courses/30/lessons/87694)
+
+### 소요 시간
+- 1시간
+
+### 간단 풀이 방법
+- 각 사각형을 이차원 배열에 그린다. 이때 겹치는 격자에 대해서 판별해야하기에 맵과 사각형의 크기를 2배로 지정해서 실행
+- 시작점 부터 bfs를 통해서, 아이템 까지의 최단 거리를 구한다
+
+### pseudo code
+```
+FUNCTION solution(rectangle, characterX, characterY, itemX, itemY):
+    INITIALIZE answer as the maximum integer value
+    FOR each rectangle in rectangle:
+        SCALE the coordinates by multiplying by 2
+        CALL fill function with scaled coordinates
+    
+    CALL bfs with starting position of character and target position of item
+    RETURN answer
+
+FUNCTION fill(y1, y2, x1, x2):
+    FOR each row from y1 to y2:
+        FOR each column from x1 to x2:
+            IF map at (i, j) is 1, CONTINUE to next iteration
+            SET map[i][j] to 1
+            IF i is at the boundary or j is at the boundary, SET map[i][j] to 2
+
+FUNCTION bfs(character, item):
+    MARK the starting position (character's position) as visited
+    INITIALIZE a queue q
+    ADD the character's position to the queue
+    
+    WHILE q is not empty:
+        POP the current position (curr) from the queue
+        IF curr is at the target position (item), SET answer to the distance (curr.d) divided by 2, RETURN
+        FOR each direction (up, down, left, right):
+            COMPUTE new position (ny, nx) from curr position
+            IF new position is out of bounds OR visited OR not a valid space (map[ny][nx] == 0), CONTINUE to next iteration
+            IF new position is part of the boundary (map[ny][nx] == 2), MARK as visited and ADD to queue with incremented distance
+```
+
+### 시간 복잡도
+- O(101^2)
+
+### 실행 시간 및 메모리
+- 최소 : 0.30ms 69.3MB
+- 최대 : 20.98ms, 93.1MB
